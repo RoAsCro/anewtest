@@ -1,0 +1,12 @@
+System.out.print("Please enter a number n: ");
+String n_string = System.console().readLine();
+double n = Integer.parseInt(n_string), total = 0;
+
+
+for (double i = 0; i <= n; i++) {
+  double additive = 4/((2 * i) + 1);
+  if (i % 2 == 0) total += additive;
+  else total -= additive;
+
+}
+System.out.println(total);

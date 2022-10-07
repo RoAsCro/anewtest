@@ -1,0 +1,124 @@
+String rank_hand = ""
+int h1 = 0, h2 = 0, h3 = 0, h4 = 0, h5 = 0, i = 0;
+boolean flush = true;
+String prev_suit = "X";
+String x = "X";
+if (prev_suit != x) System.out.println("TRUE");
+while (i < 5) {
+	i++;
+	String card = System.console().readLine();
+	String r;
+	String suit;
+	if (card.length() == 2) {
+		r = card.substring(0,1);
+		suit = card.substring(1,2);
+	}
+	else {
+		r = card.substring(0,2);
+		suit = card.substring(2,3);	
+	}
+	if (flush == true && prev_suit != "X") {		
+		if (!prev_suit.equals(suit)) {
+			flush = false;	
+			System.out.println("ERROR HERE");
+		}
+	}else prev_suit = suit;
+
+
+	switch(r) {
+		case "J":
+			r = "11";
+			break;
+
+		case "Q":
+			r = "12";
+			break;
+
+		case "K":
+			r = "13";
+			break;
+		
+		case "A":
+			r = "1";
+			break;
+		default:
+			break;
+	}
+	int rank;
+	rank = Integer.parseInt(r);
+	h5 = h4;
+	h4 = h3;
+	h3 = h2;
+	h2 = h1;
+	h1 = rank;
+	if (h2 != 0 && h1 > h2) {
+			if (h3 != 0 && h1 > h3) {
+				if (h4 != 0 && h1 > h4) {
+					if (h5 != 0 && h1 > h5) {
+						h1 = h2;
+						h2 = h3;
+						h3 = h4;
+						h4 = h5;
+						h5 = rank;
+					} else {
+						h1 = h2;
+						h2 = h3;
+						h3 = h4;
+						h4 = rank;
+					}
+				} else {
+					h1 = h2;
+					h2 = h3;
+					h3 = rank;
+				}
+			}else {
+				h1 = h2;
+				h2 = rank;
+			}
+		}		
+			
+
+	//System.out.println(rank);
+	
+	
+}
+System.out.println(h1 + " " + h2 + " " + h3 + " " + h4 + " " + h5);
+boolean straight = false
+int s_checker = 0
+
+if (h5 == 13 && h1 == 1) s_checker += 1;
+if (h2 - h1 == 1) s_checker += 1;
+if (h3 - h2 == 1) s_checker += 1;
+if (h4 - h3 == 1) s_checker += 1;
+if (h5 - h4 == 1) s_checker += 1;
+
+if (s_checker == 4) straight = true;
+
+System.out.println("Straight: " + straight);
+System.out.println("Flush: " + flush);
+
+if (!straight) {
+	int kind_check_1 = 0;
+	int kind_check_2 = 0;
+	if (h1 == h2) kind_check_1 += 1;	
+	if (h1 == h3) kind_check_1 += 1;
+	if (h1 == h4) kind_check_1 += 1;
+	if (kind_check_1 < 1) {
+		if (h2 == h3) kind_check_1 += 1;
+		if (h2 == h4) kind_check_1 += 1;
+		if (h2 == h5) kind_check_1 += 1;
+		if (kind_check_1 < 1) {
+			if (h3 == h4) kind_check_1 += 1;
+			if (h3 == h5) kind_check_1 += 1;
+			if (kind_check_1 < 1) {
+				if (h4 == h5) kind_check_1 += 1;
+		}
+	} else if (kind_check_1 < 2) {
+		if (h2 == h3) kind_check_2 += 1;
+		if (h2 == h4) kind_check_2 += 1;
+		if (h2 == h5) kind_check_2 += 1;
+		if kind_check_2 < 1 {
+			if (h3 == h4) kind_check_2 += 1;
+			if (h3 == h5) kind_check_2 += 1;
+		}
+		

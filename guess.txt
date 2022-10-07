@@ -1,0 +1,21 @@
+int guess_number = (int) Math.round(1000 * Math.random()), guesses = 0;
+String guess = "";
+System.out.println("Try to guess my number!");
+boolean end = false;
+
+while (!end) {
+  guesses++;
+  System.out.print("Tell me a number: ");
+
+  guess = System.console().readLine();
+  int guess_as_int = Integer.parseInt(guess);
+
+  System.out.println();
+
+  if (guess_as_int == guess_number) {
+    System.out.println("CORRECT!");
+    System.out.println("It took you " + guesses + " guesses.");
+    end = true;
+  }else if (guess_as_int > guess_number) System.out.println("No! My number is lower.");
+  else if (guess_as_int < guess_number) System.out.println("No! My number is higher.");
+}

@@ -1,0 +1,42 @@
+
+System.out.print("Enter a number: ");
+String entry = System.console().readLine();
+System.out.println();
+
+int number = Integer.parseInt(entry), greater_prime, lesser_prime;
+boolean go = true;
+
+for (int i = 0; i < 2; i++) {
+  int check_number = number;
+  go = true;
+
+  while (go) {
+    int target = check_number / 2;
+    boolean prime_check = true;
+
+    for (int j = 2; j <= target; j++) {
+
+      if (check_number % j == 0) prime_check = false;
+
+      else target = check_number / j;
+
+    }
+    if (prime_check) {
+
+      go = false;
+
+      if (i == 0) greater_prime = check_number;
+
+      else lesser_prime = check_number;
+
+    } else if (i == 0) {
+    check_number++;
+    } else check_number--;
+  }
+}
+
+if (greater_prime - number == number - lesser_prime) {
+  System.out.println(greater_prime + " " + lesser_prime);
+} else if (greater_prime - number > number - lesser_prime) {
+  System.out.println(lesser_prime);
+} else System.out.println(greater_prime);
