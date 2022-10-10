@@ -1,0 +1,62 @@
+double add(double a, double b) {
+	return a + b;
+}
+
+double subtract(double a, double b) {
+	return a - b;
+}
+
+double multiply(double a, double b) {
+	return a * b;
+}
+
+double divide(double a, double b) {
+	return a / b;
+}
+
+boolean go = true;
+double x;
+while (go) {
+System.out.println("Please enter an operation: ");
+String input = System.console().readLine();
+String num_1 = "", operation = "", num_2 = "";
+
+int parser = 0;
+
+for (int i = 0; i < input.length(); i++) {
+	String text = input.substring(i, i+1);
+	if (!text.equals(" ")) { 
+		if (!text.equals("+") && !text.equals("-") && !text.equals("*") && !text.equals("/")) {
+			if (parser == 0) num_1 += text;
+			else num_2 += text;
+		} else {
+			operation = text;
+			parser++;
+		}
+	} else parser += 1;
+}
+
+double num1 = Double.parseDouble(num_1);
+double num2 = Double.parseDouble(num_2);
+/*System.out.println("Please choose an operation:\n1 - add\n2 - subtract\n3 - multiply\n4 - divide ");
+int choice = Integer.parseInt(System.console().readLine());
+*/
+
+
+switch(operation) {
+	case "+":
+		x = add(num1, num2);
+		break;
+	case "-":
+		x = subtract(num1, num2);
+		break;
+	case "*":
+		x = multiply(num1, num2);
+		break;
+	case "/":
+		x = divide(num1, num2);
+		break;
+}
+
+System.out.println(x);
+}
