@@ -1,0 +1,12 @@
+int[][] grid = new int[8][8];
+
+
+
+grid[0][0] = 1;
+System.out.println(grid[0][0]);
+
+int[] list = {1, 2, 3};
+
+list.findIndex(2);
+
+

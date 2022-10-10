@@ -1,0 +1,3 @@
+String hands = "RR";
+char hand_1 = substring.hands(0,1);
+//if ()

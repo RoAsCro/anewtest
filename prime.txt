@@ -1,0 +1,17 @@
+int x = 0;
+
+for (int i = 2; x < 1000; i ++) {
+  int target = i / 2;
+  boolean prime_check = true;
+  for (int j = 2; j <= target; j++) {
+    //System.out.println(target);
+    if (i % j == 0) prime_check = false;
+
+    else target = i / j;
+    //System.out.println(target);
+  }
+  if (prime_check) {
+  x++;
+  System.out.println(i + " is prime.");
+  }
+}
