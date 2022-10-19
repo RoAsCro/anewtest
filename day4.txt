@@ -1,0 +1,248 @@
+// size - 01 - 20
+// newSize - 04 - 06
+// i - 09 - 18
+// j - 10 - 16
+
+//>49
+//>64
+//>58
+//>66
+
+//>49
+//>60
+//>26
+//>27
+//>11
+//>12
+//>13
+//>28
+//>16
+//>18-21 * 4
+//>32
+//>01
+//>49
+//>66
+
+
+
+double power(int number, int exponent) {
+	if (exponent >= 0) {
+		int result = 1;
+		for (int i = 1; i <= exponent; i++) {
+			result *= number;
+		}
+		return result;
+	} else {
+		double result = 1;
+		for (int i = -1; i >= exponent; i--) {
+			result /= number;
+			
+		}
+		return result;
+	}
+
+}
+
+double power2(int e) {
+	return power(2, e);
+}
+
+
+double binary2decimal(String binary) {
+	double result = 0;
+	for (int i = binary.length() - 1; i >= 0; i--) {
+		if (binary.substring(i,i+1).equals("1")) result += power2(binary.length() - 1 - i);
+	}
+	return result;
+}
+
+String decimal2binary(int decimal) {
+	String result = "";
+	while (decimal != 0) {
+		result = decimal % 2 + result;
+		decimal /= 2;
+	}
+	return result;
+
+}
+
+
+String converterMenu(String number) {
+	System.out.println("What would you like to do?");
+	System.out.println("1 - Convert to binary");
+	System.out.println("2 - Convert to decimal");
+	String choice = System.console().readLine();
+	String result = "";
+	if (choice.equals("1")) {
+		result = result + decimal2binary(Integer.parseInt(number));
+		return result;
+	} else {
+		result = result + binary2decimal(number);
+		return result;
+	}
+
+}
+
+//System.out.println(converterMenu("123"));
+String[] hexes = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
+String decimal2hex(int dec) {
+	String result = "";
+	
+	while (dec != 0) {
+		result = hexes[dec % 16] + result;
+		dec /= 16;
+	}
+	return result;
+}
+
+//System.out.println(decimal2hex(1421));
+
+
+double hex2decimal(String hex) {
+	double result = 0;
+	for (int i = hex.length() - 1; i >= 0; i--) {
+		int number = 0;
+		for (int j = 0; j <= 15; j++) {
+			//System.out.println(hexes[j]);
+			//System.out.println(hex.substring(i,i+1));
+			if (hexes[j].equals(hex.substring(i,i+1))) {
+				//System.out.println("Test");
+				number = j;
+				break;
+			}
+		}
+		System.out.println(hex.substring(i));
+		System.out.println(number);
+		System.out.println(hex.length() - i - 1);
+		result += number * power(16, hex.length() - i - 1);
+	}
+	return result;
+}
+
+//System.out.println(hex2decimal("1e551"));
+
+
+class Point {
+	double x, y;
+
+	Point(double a, double b) {
+		x = a;
+		y = b;
+	}
+	double distanceTo(Point point2) {
+		return Math.sqrt(Math.pow(this.x - point2.x, 2) + Math.pow(this.y - point2.y, 2));
+		
+	}
+	
+	double distanceToOrigin() {
+		Point origin = new Point(0, 0);
+		return distanceTo(origin);
+	}
+
+	void moveTo(double a, double b) {
+		this.x = a;
+		this.y = b;
+	}
+
+	void moveToPoint(Point point2) {
+		moveTo(point2.x, point2.y);
+	}
+
+	Point clones() {
+		Point newPoint = new Point(this.x, this.y);
+		return newPoint;
+	}	
+	
+	Point opposite() {
+		Point newPoint = new Point(this.x * -1, this.y * -1);
+		return newPoint;
+	}
+}
+
+
+
+/*
+Point point = new Point(4, 3);
+
+
+Point secondPoint = new Point(6, 7);
+
+
+System.out.println(point.distanceToOrigin());
+
+point.moveToPoint(secondPoint);
+
+System.out.println(point.distanceToOrigin());
+
+System.out.println(point.opposite().x);
+*/
+
+
+
+class Integer2 {
+	int value;
+
+	Integer2(int v) {
+		value = v;
+	}
+
+	int getValue() {
+		return value;
+	}
+
+	void setValue(int v) {
+		this.value = v;
+	}
+
+	boolean isEven() {
+		if (value % 2 == 0) return true;
+		else return false;
+	}
+
+	
+	boolean isOdd() {
+		if (value % 2 != 0) return true;
+		else return false;
+	}
+
+	void prettyPrint() {
+		System.out.println(value);
+	}
+
+	String toStringTwo() {
+		String result = "" + value;
+		return result;
+	}
+}
+
+Integer2 i = new Integer2(2)
+/*
+System.out.println(i.value);
+System.out.println(i.getValue());
+i.setValue(4);
+System.out.println(i.getValue());
+System.out.println(i.isEven());
+i.setValue(5);
+System.out.println(i.isEven());
+i.prettyPrint();
+System.out.println(i.toStringTwo());*/
+
+/*
+Integer2 i2 = new Integer2(2);
+System.out.print("Enter a number: ");
+String str = System.console().readLine();
+int i = Integer.parseInt(str);
+i2.setValue(i);
+System.out.print("The number you entered is ");
+if (i2.isEven()) {
+System.out.println("even.");
+} else if (i2.isOdd()) {
+System.out.println("odd.");
+} else {
+System.out.println("undefined!! Your code is buggy!");
+}
+int parsedInt = Integer.parseInt(i2.toStringTwo());
+if (parsedInt == i2.getValue()) {
+System.out.println("Your toStringTwo() method seems to work fine.");
+}
+*/
