@@ -1,0 +1,15 @@
+public class ListManager {
+	private Item firstItem = null;
+
+	public void addItem(Item item) {
+		
+	}
+
+	public void printList() {
+	
+	}
+
+	public void deleteItem(String name) {
+
+	}
+}
